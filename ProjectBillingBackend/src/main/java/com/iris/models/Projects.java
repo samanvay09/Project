@@ -1,36 +1,56 @@
 package com.iris.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Projects")
 public class Projects {
 	
-	private int ProjectId;
-	private String ProjectName;
-	private int Active;
-	private String Description;
+	@Id
+   
+    @Column(name="ProjectId")
+	private int projectId;
+	 @Column(name="ProjectName")
+	private String projectName;
+	 @Column(name="Active")
+	private int active;
+	 @Column(name="Description")
+	private String description;
 	public int getProjectId() {
-		return ProjectId;
+		return projectId;
 	}
 	public void setProjectId(int projectId) {
-		ProjectId = projectId;
+		this.projectId = projectId;
 	}
 	public String getProjectName() {
-		return ProjectName;
+		return projectName;
 	}
 	public void setProjectName(String projectName) {
-		ProjectName = projectName;
+		this.projectName = projectName;
 	}
 	public int getActive() {
-		return Active;
+		return active;
 	}
 	public void setActive(int active) {
-		Active = active;
+		this.active = active;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-	
+	@Override
+	public String toString() {
+		return "Projects [projectId=" + projectId + ", projectName=" + projectName + ", active=" + active
+				+ ", description=" + description + "]";
+	}
+	 
+	 
 	
 	
 

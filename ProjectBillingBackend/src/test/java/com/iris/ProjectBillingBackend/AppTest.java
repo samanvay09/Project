@@ -1,38 +1,37 @@
 package com.iris.ProjectBillingBackend;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static java.lang.System.out;
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.iris.config.DBConfig;
+import com.iris.dao.UserDao;
+import com.iris.models.Users;
 
 /**
- * Unit test for simple App.
+ * Hello world!
+ *
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	 private static UserDao userDao;
+	 @BeforeClass
+		public static void init(){
+			out.println("I m in init - start");
+			//Created the object of Spring container
+			AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DBConfig.class);
+			
+			
+	   	 	userDao=context.getBean(UserDao.class,"userDao");
+	   	 	out.println("I m in init - end");
+		}
+	 
+	 @Test
+     public void validateUserTest(){
+            Users userObj=userDao.validateUser(5,"jain");
+            assertNotNull("Employee not found", userObj);
+     }
 }

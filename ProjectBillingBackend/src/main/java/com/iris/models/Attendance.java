@@ -1,37 +1,61 @@
 package com.iris.models;
 
-public class Attendance {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-	private int AttendId;
-	private String Month;
-	private int Year;
-	private int HalfDay;
+@Entity
+@Table(name="Attendance")
+public class Attendance {
+    @Id
+    @GeneratedValue
+    @Column(name="AttendId")
+	private int attendId;
+    @Column(name="Month")
+	private String month;
+    @Column(name="Year")
+	private int year;
+    @Column(name="HalfDay")
+	private int halfDay;
+    @Column(name="fullDay")
 	private int fullDay;
-	Projects ProjectId;
-	Developer DevId;
-	public int getAttendId() {
-		return AttendId;
+    
+    @OneToOne
+    @JoinColumn(name="ProjectId")
+	
+    Projects projectId;
+    
+    @OneToOne
+    @JoinColumn(name="DevId")
+	Developer devId;
+	
+    public int getAttendId() {
+		return attendId;
 	}
 	public void setAttendId(int attendId) {
-		AttendId = attendId;
+		this.attendId = attendId;
 	}
 	public String getMonth() {
-		return Month;
+		return month;
 	}
 	public void setMonth(String month) {
-		Month = month;
+		this.month = month;
 	}
 	public int getYear() {
-		return Year;
+		return year;
 	}
 	public void setYear(int year) {
-		Year = year;
+		this.year = year;
 	}
 	public int getHalfDay() {
-		return HalfDay;
+		return halfDay;
 	}
 	public void setHalfDay(int halfDay) {
-		HalfDay = halfDay;
+		this.halfDay = halfDay;
 	}
 	public int getFullDay() {
 		return fullDay;
@@ -40,18 +64,24 @@ public class Attendance {
 		this.fullDay = fullDay;
 	}
 	public Projects getProjectId() {
-		return ProjectId;
+		return projectId;
 	}
 	public void setProjectId(Projects projectId) {
-		ProjectId = projectId;
+		this.projectId = projectId;
 	}
 	public Developer getDevId() {
-		return DevId;
+		return devId;
 	}
 	public void setDevId(Developer devId) {
-		DevId = devId;
+		this.devId = devId;
+	}
+	@Override
+	public String toString() {
+		return "Attendance [attendId=" + attendId + ", month=" + month + ", year=" + year + ", halfDay=" + halfDay
+				+ ", fullDay=" + fullDay + ", projectId=" + projectId + ", devId=" + devId + "]";
 	}
 	
+    
 	
 	
 }

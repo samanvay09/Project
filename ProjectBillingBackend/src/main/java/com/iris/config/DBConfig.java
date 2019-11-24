@@ -44,7 +44,7 @@ public class DBConfig {
 		
 		LocalSessionFactoryBuilder builder=new LocalSessionFactoryBuilder(getDataSource());
 		builder.addProperties(properties);
-		builder.scanPackages("com.eshop.models");
+		builder.scanPackages("com.iris.models");
 		
 		SessionFactory factory=builder.buildSessionFactory();
 		System.out.println("Hello 4");

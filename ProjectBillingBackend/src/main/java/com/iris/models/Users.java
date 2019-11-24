@@ -1,28 +1,49 @@
 package com.iris.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="User1")
 public class Users {
 
-	private int UserId;
-	private String Password;
-	private String Role;
+	@Id
+    @Column(name="UserId")
+	private int userId;
+	
+	@Column(name="Password")
+	private String password;
+	
+	@Column(name="Role")
+	private String role;
+	
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 	public String getRole() {
-		return Role;
+		return role;
 	}
 	public void setRole(String role) {
-		Role = role;
+		this.role = role;
 	}
+	@Override
+	public String toString() {
+		return "Users [userId=" + userId + ", password=" + password + ", role=" + role + "]";
+	}
+	 
+	
 	
 	
 	
