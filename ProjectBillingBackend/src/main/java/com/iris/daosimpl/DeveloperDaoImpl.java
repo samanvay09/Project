@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iris.dao.DeveloperDao;
 import com.iris.models.Attendance;
 import com.iris.models.Developer;
+import com.iris.models.ProjectAllocation;
 
 
 @Component
@@ -108,4 +109,101 @@ public class DeveloperDaoImpl implements DeveloperDao{
 		}
 		return null;
 	}
+	
+	public List<ProjectAllocation> getAllAllocate()
+	{
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from ProjectAllocation");
+			return q.list();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ProjectAllocation getConfig(int id)
+	{
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from com.iris.models.ProjectAllocation where devId.devId=:devId ");
+			q.setParameter("devId",id);
+			
+			List<ProjectAllocation> allProAllocation = q.list();
+			if(allProAllocation.size()==0) {
+				return null;
+			}
+			else {
+				ProjectAllocation ProAllocation = (ProjectAllocation)allProAllocation.get(0);
+				System.out.println(ProAllocation);
+				return ProAllocation;
+				}
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+	public String getDeveloperByIdd(int id)
+	{
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			Developer obj = session.get(Developer.class, id);
+			String name = obj.getDevName();
+			System.out.println(name);
+			return name;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public List<Attendance> getAllAttendance()
+	{
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from Attendance");	
+			return q.list();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ProjectAllocation getProAllocation(int id)
+	{
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from com.iris.models.Configuration where ConfigId=:configId ");
+			q.setParameter("configId",id);
+			List<ProjectAllocation> allProAllocation = q.list();
+			if(allProAllocation.size()==0) {
+				return null;
+			
+		}
+			else {
+				ProjectAllocation ProAllocation = (ProjectAllocation)allProAllocation.get(0);
+				System.out.println(ProAllocation);
+				return ProAllocation;
+	}
 }
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+}
+

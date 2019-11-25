@@ -13,6 +13,7 @@ public interface ProjectsDao {
 	
 	public List<Projects> getAllProject();
 	public List<Configuration> getAllConfig();
+	public List<Configuration> getAllConfigNotAllocated();
 	
 	public Projects getProjectById(int projectId);
 	public boolean setProjectConfig(Configuration pObj);

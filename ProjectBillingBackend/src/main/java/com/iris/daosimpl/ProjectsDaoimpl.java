@@ -44,7 +44,8 @@ public class ProjectsDaoimpl implements ProjectsDao{
 		try
 		{
 			Session session=sessionFactory.getCurrentSession();
-			Query q = session.createQuery("from Configuration");
+			Query q = session.createQuery("from Configuration ");
+			
 			return q.list();
 		}
 		catch(Exception e){
@@ -116,7 +117,23 @@ public class ProjectsDaoimpl implements ProjectsDao{
 	{
 		try {
 			Session session=sessionFactory.getCurrentSession();
-			session.save(projectAllocation);
+			 Query q=session.createQuery("from com.iris.models.ProjectAllocation where devId=:devId and configId=:configId ");
+			 q.setParameter("devId",projectAllocation.getDevId().getDevId());
+				q.setParameter("configId",projectAllocation.getConfigId().getConfigId());
+				if(q.list().size()==0) {
+					session.save(projectAllocation);
+					return true;
+				}
+				}
+				catch(Exception e) {
+
+					e.printStackTrace();
+
+				}
+
+				return false;
+	}
+			/*session.save(projectAllocation);
 			return true;
 			}
 			catch(Exception e) {
@@ -124,7 +141,7 @@ public class ProjectsDaoimpl implements ProjectsDao{
 			}
 			return false;
 	
-	}
+	}*/
 	public List<ProjectAllocation> getAllProjectAllocation()
 	{
 		try {
@@ -145,9 +162,30 @@ public class ProjectsDaoimpl implements ProjectsDao{
 		try
 		{
 			Session session=sessionFactory.getCurrentSession();
-			 Query q=session.createQuery("from com.iris.models.Configuration where projectId=:projectId");
+			System.out.println("hello");
+			 Query q=session.createQuery("from com.iris.models.Configuration where projectId.projectId=:projectId");
 			 q.setParameter("projectId",projectId);
 			 return q.list();
+		}
+		catch(Exception e)
+
+		{
+
+			e.printStackTrace();
+
+		}
+
+		return null;
+	}
+	
+	public List<Configuration> getAllConfigNotAllocated()
+	{
+		try
+		{
+			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from Configuration where configId not in(select configId.configId from ProjectAllocation)");
+			return q.list();
+			
 		}
 		catch(Exception e)
 

@@ -13,7 +13,7 @@ import com.iris.dao.RolesDao;
 import com.iris.models.Attendance;
 import com.iris.models.Configuration;
 import com.iris.models.Developer;
-
+import com.iris.models.ProjectAllocation;
 import com.iris.models.Projects;
 import com.iris.models.Roles;
 import com.iris.services.AdminService;
@@ -67,8 +67,35 @@ public class AdminServiceImpl implements AdminService{
 	{
 		return developerDao.getBill(developerId, month,year);
 	}
-	
-	
+	public double getBill(double perHourBilling, Attendance deo) {
+		double halfDay=deo.getHalfDay()*4.5;
+		double fullDay=deo.getFullDay()*9;
+		double bill=((halfDay*perHourBilling)+(fullDay*perHourBilling));
+		return bill;
+	}
+	public List<ProjectAllocation> getAllAllocate()
+	{
+		return developerDao.getAllAllocate();
+	}
+	public ProjectAllocation getConfig(int id)
+	{
+		return developerDao.getConfig(id);
+	}
+	public String getDeveloperByIdd(int id)
+	{
+		return developerDao.getDeveloperByIdd(id);
+	}
+	public List<Attendance> getAllAttendance()
+	{
+		return developerDao.getAllAttendance();
+	}
+	public String getProjectName(int id)
+	{
+		Projects p = projectsDao.getProjectById(id);
+		System.out.println(p);
+		String name = p.getProjectName();
+		return name;
+	}
 }
 	
 	
