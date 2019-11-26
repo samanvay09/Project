@@ -46,9 +46,24 @@ public class AdminController {
 	HttpSession session;
 	
 	
+	
+	public boolean checkSession(ModelMap map) {
+		if(session.getAttribute("uObj")==null) {
+			map.addAttribute("msg","Session doesn't exist.. Login First");
+			return true;
+		}
+		return false;
+		
+	}
+	
 	@RequestMapping(value="/Configurat",method=RequestMethod.GET)
 	public String Configurat(ModelMap map)
 	{
+		
+		if(checkSession(map)) {
+			return "Homepage";
+		}
+		
 		List<Configuration> con = adminService.getAllConfig();
 		map.addAttribute("configList",con);
 		List<Projects> proList =adminService.getAllProject();
@@ -67,6 +82,11 @@ public class AdminController {
 	}
 	@RequestMapping(value= {"/Allocation"},method=RequestMethod.GET)
 	public String Allocation(ModelMap map) {
+		
+		if(checkSession(map)) {
+			return "Homepage";
+		}
+		
 		List<Projects> proList =adminService.getAllProject();
 		List<Roles> roleList = adminService.getAllRole();
 		List<Developer> dList = adminService.getAllDeveloper();
@@ -81,6 +101,11 @@ public class AdminController {
 	@RequestMapping(value="/submitAllocate",method=RequestMethod.GET)
 	public String validateConfigr(@RequestParam int projectId,@RequestParam int roleId,@RequestParam String loc,@RequestParam int devId,ModelMap map)
 	{
+		
+		if(checkSession(map)) {
+			return "Homepage";
+		}
+		
 		System.out.println(projectId+""+roleId+""+loc+""+devId);
 		List<Projects> proList =adminService.getAllProject();
 		List<Roles> roleList = adminService.getAllRole();
@@ -119,6 +144,12 @@ public class AdminController {
 	@RequestMapping(value= {"/submitConfig"},method=RequestMethod.GET)
 	public ModelAndView submitConfig(@ModelAttribute(name="pObj") @Valid Configuration pObj,BindingResult result,ModelMap map) 
 	{
+		
+		if(checkSession(map)) {
+			return new ModelAndView("Homepage");
+		
+		}
+		
 		try
 		{
 			boolean saved = adminService.setProjectConfig(pObj);
@@ -151,6 +182,11 @@ public class AdminController {
 	@RequestMapping(value= {"viewDeveloper"},method=RequestMethod.GET)
 	public String DevBill(ModelMap map)
 	{
+		if(checkSession(map)) {
+			return "Homepage";
+		}
+		
+		
 		List<Attendance> dList=adminService.getAllAttendance();
 		map.addAttribute("devL", dList);
 		return "viewDeveloper";
@@ -159,6 +195,11 @@ public class AdminController {
 	@RequestMapping(value= {"Bill"},method=RequestMethod.GET)
 	public ModelAndView DevBills(@RequestParam(name="month") String month,@RequestParam(name="devId") int devId,@RequestParam(name="year") int year,ModelMap map)
 	{
+		if(checkSession(map)) {
+			return new ModelAndView("Homepage");
+		}
+		
+		
 		try
 		{
 			System.out.println("month");
@@ -191,7 +232,9 @@ public class AdminController {
 	@RequestMapping(value= {"viewProject"},method=RequestMethod.GET)
 	public String ProjBill(ModelMap map)
 	{
-		
+		if(checkSession(map)) {
+			return "Homepage";
+		}
 		List<Projects> proList = adminService.getAllProject();
 		map.addAttribute("pro", proList);
 		return "viewProject";
@@ -199,7 +242,14 @@ public class AdminController {
 	
 	@RequestMapping(value= {"BillProject"},method=RequestMethod.GET)
 	public ModelAndView billingProject(@RequestParam(name="projectId") int id,@RequestParam(name="month") String month,@RequestParam(name="year") int year,ModelMap map) {
-try
+
+		
+		if(checkSession(map)) {
+			return new ModelAndView("Homepage");
+		}
+		
+		
+		try
 {
 	System.out.println(id + month);
 	double bill = 0;

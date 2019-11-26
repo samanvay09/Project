@@ -100,16 +100,39 @@ button:hover {
      width: 100%;
   }
 }
-
+.fixed-header {
+        width: 100%;
+        position: fixed;        
+        background:#008000;
+        padding: 10px 0;
+        color: #80e5ff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .container{
+        width: 100%;
+         text-align: center; /* Center the DIV horizontally */
+    }
+    
 </style>
+
 </head>
 <body>
+
+<div class="fixed-header">
+        <div class="container">
+            <nav>
+                 <h1>IRIS SOFTWARE</h1>   
+            </nav>
+        </div>
+    </div>
 	
-		<form action="signIn" method="post" >
-			<div class="container">
-    <h1>Sign In</h1>
+		<form action="signIn"    method="post"  >
+			<div style="padding-top: 200px"class="container">
+  
     
-    <hr>
+    
 
     <label for="UserId"><b>UserId</b></label>
     <input type="text" placeholder="Enter User Id" name="userId" required>

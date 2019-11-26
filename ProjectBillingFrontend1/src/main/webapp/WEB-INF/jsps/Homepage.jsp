@@ -59,15 +59,40 @@
   color: white;
   transform: rotateY(180deg);
 }
+
+ .fixed-header {
+        width: 100%;
+        position: fixed;        
+        background:#008000;
+        padding: 10px 0;
+        color: #80e5ff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .container{
+        width: 100%;
+         text-align: center; /* Center the DIV horizontally */
+    }
 </style>
 </head>
 <body>
+
+<div class="fixed-header">
+        <div class="container">
+            <nav>
+                 <h1>IRIS SOFTWARE</h1>   
+            </nav>
+        </div>
+    </div>
  
-<h2 align="center" style="padding-top:0px;font-size:30px;font-family: verdana">Project Billing Management System</h2>
+<h2 align="center" style="padding-top:100px;font-size:30px;font-family: verdana">Project Billing Management System</h2>
 <div align="center">
 <a href="getSignInForm"><h2>Click Here To Log In<h2></a><br/>
 </div>
-
+<div>
+<p>${msg}</p>
+</div>
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">

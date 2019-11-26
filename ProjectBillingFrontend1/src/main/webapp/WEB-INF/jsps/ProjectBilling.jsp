@@ -16,7 +16,7 @@
 				<h5>Count : ${count}</h5>
 				<h5>Bill : <strong>$ ${bill}</strong></h5>
 				<h5>Sum : <strong>$ ${bills}</strong></h5>
-				
+				<h5> Month : ${month}</h5>
 			
 
 </body>

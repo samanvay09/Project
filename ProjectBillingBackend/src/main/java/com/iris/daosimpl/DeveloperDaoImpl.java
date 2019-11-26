@@ -77,8 +77,19 @@ public class DeveloperDaoImpl implements DeveloperDao{
 		try
 		{
 			Session session=sessionFactory.getCurrentSession();
+			Query q=session.createQuery("from com.iris.models.Attendance where devId.devId=:i and projectId.projectId=:l");
+			q.setParameter("i",obj.getDevId().getDevId());
+			q.setParameter("l",obj.getProjectId().getProjectId());
+			if(q.list().size()==0)
+			{
+			
 			session.save(obj);
 			return true;
+		}
+			else
+			{
+				return false;
+			}
 		}
 		catch(Exception e)
 		{

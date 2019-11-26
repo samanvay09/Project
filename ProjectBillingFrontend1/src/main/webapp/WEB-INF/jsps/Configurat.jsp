@@ -7,9 +7,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Configure</title>
+
+<style>
+.header-right {
+  float: right;
+  
+}
+.form
+{
+width:40%;
+text-align:center;
+margin-left:30%;
+
+}
+
+</style>
+
 </head>
 <body>
+
+
+
+
+ <div class="header-right" style= "font-size:30px">
+  <a href="logout">Logout</a>
+  </div>
+
+<h1 style="text-align: center;font-family: verdana;color:#000080">Configure Here! </h1>
 
 <core:if test="${param.msg ne null}">
 	    		<div class="alert alert-success">
@@ -21,7 +46,9 @@
 	    			${param.errorMsg}
 	    		</div>
     		</core:if>
-
+<div class="form">
+<fieldset>
+<legend>Configuration</legend>
  <f:form action="submitConfig" modelAttribute="pObj" method="get" id="projectform">
  <label>Projects:</label>
 			<f:select path="projectId.projectId" >
@@ -31,6 +58,9 @@
              
              </f:select><br>
  			<div>
+ 			
+ 			<br/>
+ 			
 			<label>Role:</label>
 			<f:select path="roleId.roleId">
 			<core:forEach items="${role}" var="rOb">
@@ -38,6 +68,9 @@
 			 </core:forEach>
 				</f:select><br>
 			</div>
+			
+			<br/>
+			
  		<label>Location:</label>
 			<div>
 			<div class="custom-control custom-radio">
@@ -49,11 +82,16 @@
 					<label  for="Offshore">Offshore</label>
 				</div>
 			</div>	
+			
+			<br/>
+			
  			<br><div >
  			<label>Per Hour Billing  : </label>
  			<f:input type="number" path="perHourBilling" size="30" cssClass="form-control" placeholder="Enter Per Hour Billing" required="required"/>
 	    			<f:errors path="perHourBilling"></f:errors>	
 	    			 </div>
+	    			 
+	    			 <br/>
 			
 			<div class="form-group">
 			    <button type="submit" class="btn btn-primary">Submit</button>
@@ -61,5 +99,7 @@
  			
 			
  </f:form>
+ </fieldset>
+ </div>
 </body>
 </html>

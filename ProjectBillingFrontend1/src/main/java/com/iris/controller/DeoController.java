@@ -42,10 +42,23 @@ public class DeoController {
 	HttpSession session;
 	
 	
+	
+	public boolean checkSession(ModelMap map) {
+		if(session.getAttribute("uObj")==null) {
+			map.addAttribute("msg","Session doesnt exist.. Login First");
+			return true;
+		}
+		return false;
+		
+	}
+	
+	
 	@RequestMapping(value= {"/Attendance"},method=RequestMethod.GET)
 	public String Allocation(ModelMap map) {
 		
-		
+		if(checkSession(map)) {
+			return "Homepage";
+		}
 		
 		List<Developer> dList = deoService.getAllDeveloper();
 		List<Projects> proList =deoService.getAllProject();
@@ -98,6 +111,11 @@ public class DeoController {
 	@RequestMapping(value= {"/submitAttendance"},method=RequestMethod.GET)
 	public ModelAndView submitAttendance(@ModelAttribute(name="dataObj") @Valid Attendance dataObj,BindingResult result,ModelMap map)
 	{
+		if(checkSession(map)) {
+			return new ModelAndView("Homepage");
+		}
+		
+		
 		try
 		{
 			boolean saved = deoService.setAttendance(dataObj);
@@ -106,8 +124,8 @@ public class DeoController {
 			
 			if(saved)
 			{
-				ModelAndView mv =new ModelAndView("redirect:http://localhost:1234/ProjectBillingFrontend1/Configurat");
-				mv.addObject("msg","Configuration Added Succesfully..");
+				ModelAndView mv =new ModelAndView("redirect:http://localhost:1234/ProjectBillingFrontend1/Attendance");
+				mv.addObject("msg","Attendance Added Succesfully..");
 				System.out.println("return to page and added successfully");
 				return mv;
 			}

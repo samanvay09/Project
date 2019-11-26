@@ -8,9 +8,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Attendance</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+.header-right {
+  float: right;
+  
+}
+.form
+{
+width:40%;
+text-align:center;
+margin-left:30%;
+
+}
+</style>
 </head>
 <body>
 
+ <div class="header-right" style= "font-size:30px">
+  <a href="logout">Logout</a>
+  </div>
+
+<h1 style="text-align: center;font-family: verdana;color:#000080">Attendance! </h1>
+<div class="form">
+<fieldset>
+<legend>Allocation</legend>
 <f:form action="submitAttendance" modelAttribute="dataObj" method="get">
 <div>
 <label>Projects:</label>
@@ -24,6 +45,7 @@
              
              </div>
              
+             <br/>
              <div>
 		<label>Developer Name :</label>
 		<f:select path="devId.devId" id="developer" cssClass="form-control">
@@ -31,6 +53,9 @@
 		</f:select><br>
 		<div id="msg"></div>
 		</div>
+		
+		
+             <br/>
 		
 		<div>
 		<label>Month :</label>
@@ -51,6 +76,9 @@
 		<br>
 		</div>
 		
+		
+             <br/>
+		
 		<div>
 		<label>Year :</label>
 		<f:select path="year" id="year" cssClass="form-control" required="true">
@@ -70,22 +98,31 @@
 			}
 		</script>
 		</div>
-		<br>
+	
+             <br/>
+		
 		<div>
 		<label>Half day:</label>
 		<f:input path="halfDay" size="30" cssClass="form-control" placeholder="Enter Number of Half Days" required="true"/><br>
 		</div>
+		
+		
+             <br/>
 		
 		<div>	
 			<label>Full Day:</label>
 			<f:input path="fullDay" size="30" cssClass="form-control" placeholder="Enter Number of Full Days" required="true"/><br>
 		</div>
 		
+		
+             <br/>
+		
 		<div class="form-group">
 		    <button type="submit" class="btn btn-primary">Submit</button>
 		 </div>
 	</f:form>
-	
+	</fieldset>
+	</div>
 	<script type="text/javascript">
 	$('select#projects').on('change', function() {
 		$('#developer').empty()

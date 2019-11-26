@@ -117,7 +117,7 @@ public class ProjectsDaoimpl implements ProjectsDao{
 	{
 		try {
 			Session session=sessionFactory.getCurrentSession();
-			 Query q=session.createQuery("from com.iris.models.ProjectAllocation where devId=:devId and configId=:configId ");
+			 Query q=session.createQuery("from com.iris.models.ProjectAllocation where devId.devId=:devId and configId.configId=:configId ");
 			 q.setParameter("devId",projectAllocation.getDevId().getDevId());
 				q.setParameter("configId",projectAllocation.getConfigId().getConfigId());
 				if(q.list().size()==0) {

@@ -8,10 +8,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+
+
 <div align="center">
-<h1 style="background-color:lightblue">Welcome Admin</h1>
+<h1 style="background-color:lightblue;padding-left:500px;padding-right:50px ">Welcome Admin <a href="logout" style=" padding-left:400px; text-align:right">Logout</a></h1>
 </div>
 <div class="dropdown" align="right">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -24,5 +27,8 @@
       <a class="dropdown-item" href="viewProject">View Project</a>
       
     </div>
+    
+    
+    
 </body>
 </html>

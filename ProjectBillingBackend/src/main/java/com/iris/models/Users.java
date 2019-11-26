@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="User1")
 public class Users {
@@ -13,6 +14,7 @@ public class Users {
 	@Id
     @Column(name="UserId")
 	private int userId;
+	
 	
 	@Column(name="Password")
 	private String password;

@@ -7,8 +7,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Bill by Project</title>
+<style>
+.header-right {
+  float: right;
+  }
+  .form
+{
+width:40%;
+text-align:center;
+margin-left:30%;
+
+}
+  
+</style>
 </head>
 <body>
+<div class="header-right" style= "font-size:30px">
+  <a href="logout">Logout</a>
+  </div>
 <div id="blankspace" >
 
 <h2 align="center">Project Billing</h2><hr>
@@ -18,9 +34,14 @@
 	    		</div>
     		</core:if>	
     		
+    		<div class="form">
+<fieldset>
+<legend>Allocation</legend>	
+    		
     		<form action="BillProject"  method="get">
+    		<br/>
 		<label>Projects:</label>
-		<div>
+		
 		
 		
 		<select name="projectId">
@@ -30,8 +51,7 @@
              </core:forEach>
              
               </select><br>
-		</div>
-		
+		<br/>
 		<div>
 						<label>Month :</label>
 						<select  name="month" class="form-control" required="true">
@@ -50,13 +70,16 @@
 						</select>
 						<br>
 					</div>
-					
+					<br/>
 					<label>Year :</label>
 		<input type="number" name="year" size="30" class="form-control" placeholder="Select Year" required/><br>
+		<br/>
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
 	</form>
+	</fieldset>
+	</div>
 	</div>
 
 </body>

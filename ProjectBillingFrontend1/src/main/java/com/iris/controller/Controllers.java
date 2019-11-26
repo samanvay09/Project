@@ -63,5 +63,13 @@ public class Controllers {
 			return "SignInForm";
 		}
 		}
+	
+	@RequestMapping(value= {"logout"}, method=RequestMethod.GET)
+	public String logout() {
+		session.removeAttribute("uObj");
+		session.invalidate();
+		return "Homepage";
+	}
+	
 }
 	
